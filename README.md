@@ -2,7 +2,7 @@
 
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://pkg.go.dev/github.com/mdouchement/xredis)
 
-Handy wrapper around `github.com/go-redis/redis` package.
+Handy wrapper around `github.com/go-redis/redis` package. All the Redis client methods are usable on the xredis client.
 
 ## License
 
