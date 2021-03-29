@@ -19,7 +19,8 @@ func New(r *redis.Client) *Client {
 	}
 }
 
-// Runs excutes the given script.
+// Runs excutes the given static script.
+// It loads the script in the Redis script cache.
 func (c *Client) Run(ctx context.Context, script Script, keys []string, args ...interface{}) (Value, error) {
 	r := c.Client.EvalSha(ctx, script.Hash(), keys, args...)
 	if err := r.Err(); err != nil && strings.HasPrefix(err.Error(), "NOSCRIPT ") {
@@ -29,5 +30,12 @@ func (c *Client) Run(ctx context.Context, script Script, keys []string, args ...
 	}
 
 	v, err := r.Result()
+	return &value{value: v}, err
+}
+
+// Runs excutes the given dynamic script.
+// It does not load the script in the Redis script cache.
+func (c *Client) RunOnce(ctx context.Context, script Script, keys []string, args ...interface{}) (Value, error) {
+	v, err := c.Client.Eval(ctx, script.Source(), keys, args...).Result()
 	return &value{value: v}, err
 }
