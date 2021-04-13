@@ -21,7 +21,7 @@ type (
 )
 
 // New returns a new Client.
-func New(r *redis.Client) XClient {
+func New(r Client) XClient {
 	return &client{
 		Client: r,
 	}
