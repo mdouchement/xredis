@@ -3,8 +3,6 @@ package xredis
 import (
 	"context"
 	"strings"
-
-	"github.com/go-redis/redis/v8"
 )
 
 type (
@@ -16,7 +14,7 @@ type (
 	}
 
 	client struct {
-		*redis.Client
+		Client
 	}
 )
 
