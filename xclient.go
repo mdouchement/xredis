@@ -36,12 +36,12 @@ func (c *client) Run(ctx context.Context, script Script, keys []string, args ...
 	}
 
 	v, err := r.Result()
-	return &value{value: v}, err
+	return NewValue(v), err
 }
 
 // Runs excutes the given dynamic script.
 // It does not load the script in the Redis script cache.
 func (c *client) RunOnce(ctx context.Context, script Script, keys []string, args ...interface{}) (Value, error) {
 	v, err := c.Client.Eval(ctx, script.Source(), keys, args...).Result()
-	return &value{value: v}, err
+	return NewValue(v), err
 }

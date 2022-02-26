@@ -52,6 +52,11 @@ var (
 	ErrNotASlice = errors.New("value is not a slice")
 )
 
+// NewValue returns a new Value based on the given Redis result value.
+func NewValue(v interface{}) Value {
+	return &value{value: v}
+}
+
 // IsNil returns true if the value is nil.
 func (v *value) IsNil() bool {
 	return v.value == nil
