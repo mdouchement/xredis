@@ -2,6 +2,9 @@
 
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://pkg.go.dev/github.com/mdouchement/xredis)
 
+Deprecated: Use [Script](https://pkg.go.dev/github.com/redis/go-redis/v9#Script.Run) for efficient use of Lua scripts. Use [Cmdable](https://pkg.go.dev/github.com/redis/go-redis/v9#Cmdable) for client interface.
+
+
 Handy wrapper around `github.com/redis/go-redis/v9` package. All the Redis client methods are usable on the xredis client.
 
 ## Usage
